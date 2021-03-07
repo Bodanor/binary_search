@@ -7,13 +7,13 @@
 
 #include <stdio.h>
 #include <stdlib.h>
-#include <sys/time.h>
+#include <time.h>
 
-int *createList(int N)
+long int *createList(long int N)
 {
-    int *liste;
-    liste = (int*)calloc(N,sizeof(int));
-    for (int x = 0; x <= N; x++)
+    long int *liste;
+    liste = (long int*)calloc(N,sizeof(long int));
+    for (long int x = 0; x <= N; x++)
     {
         liste[x] = x;
         
@@ -25,9 +25,9 @@ int *createList(int N)
 }
 
 
-int linearSearch(int *list , int nb , int N)
+int linearSearch(long int *list , long int nb , long int N)
 {
-    int i = 0;
+    long int i = 0;
     while (nb != list[i] && i <= N)
     {
         i++;
@@ -44,14 +44,14 @@ int linearSearch(int *list , int nb , int N)
     }
 }
 
-int binarySearch(int *list, int nb, int N)
+int binarySearch(long int *list, long int nb, long int N)
 {
-    int left = 0;
-    int right = N-1;
+    long int left = 0;
+    long int right = N-1;
     
     while (left <= right)
     {
-        int middle = left + (right - left) /2;
+        long int middle = left + (right - left) /2;
         
         if (list[middle] == nb)
         {
@@ -78,21 +78,17 @@ int binarySearch(int *list, int nb, int N)
 int main(int argc, const char * argv[]) {
     
     
-    int N =1000000;
-    int nombre_recherche = 939827;
-    struct timeval *start = malloc(sizeof(start));
-    struct timeval *end = malloc(sizeof(end));
+    long int N =4000000009;
+    long int nombre_recherche = 473648482;
+    struct timespec *start = malloc(sizeof(start));
+    struct timespec *end = malloc(sizeof(end));
     
-    gettimeofday(start, 0);
+    clock_gettime(CLOCK_REALTIME, start);
     
-    int *list = createList(N);
+    long int *list = createList(N);
     
-    gettimeofday(end, 0);
-    long seconds = end->tv_sec - start->tv_sec;
-    long microseconds = end->tv_usec - start->tv_usec;
-    
-    double time_taken = seconds + microseconds*1e-6;
-    
+    clock_gettime(CLOCK_REALTIME, end);
+    double time_taken = (end->tv_sec - start->tv_sec) + (end->tv_nsec - start->tv_nsec)/1E9;
     printf("Liste crée en %f secondes !\n", time_taken);
     
     free(start);
@@ -100,18 +96,15 @@ int main(int argc, const char * argv[]) {
     
     start = malloc(sizeof(start));
     end = malloc(sizeof(end));
-    gettimeofday(start, 0);
     
+    clock_gettime(CLOCK_REALTIME, start);
     
     int linear_result = linearSearch(list, nombre_recherche, N);
     
     if (linear_result == 0)
     {
-        gettimeofday(end, 0);
-        long seconds = end->tv_sec - start->tv_sec;
-        long microseconds = end->tv_usec - start->tv_usec;
-        
-        double time_taken = seconds + microseconds*1e-6;
+        clock_gettime(CLOCK_REALTIME, end);
+        double time_taken = (end->tv_sec - start->tv_sec) + (end->tv_nsec - start->tv_nsec)/1E9;
         
         printf("Linéaire : Nombre trouvé en %f secondes !\n", time_taken);
     }
@@ -125,16 +118,16 @@ int main(int argc, const char * argv[]) {
     start = malloc(sizeof(start));
     end = malloc(sizeof(end));
     
+    clock_gettime(CLOCK_REALTIME, start);
+    
     int binary_result = binarySearch(list, nombre_recherche, N);
     
     
     if (binary_result == 0)
     {
-        gettimeofday(end, 0);
-        long seconds = end->tv_sec - start->tv_sec;
-        long microseconds = end->tv_usec - start->tv_usec;
         
-        double time_taken = seconds + microseconds*1e-6;
+        clock_gettime(CLOCK_REALTIME, end);
+        double time_taken = (end->tv_sec - start->tv_sec) + (end->tv_nsec - start->tv_nsec)/1E9;
         
         printf("Binaire : Nombre trouvé en %f secondes !\n", time_taken);
     }
