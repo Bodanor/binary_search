@@ -12,7 +12,7 @@
 int *createList(int N)
 {
     int *liste;
-    liste = malloc(sizeof(int)*N);
+    liste = (int*)calloc(N,sizeof(int));
     for (int x = 0; x <= N; x++)
     {
         liste[x] = x;
