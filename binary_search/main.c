@@ -78,8 +78,8 @@ int binarySearch(int *list, int nb, int N)
 int main(int argc, const char * argv[]) {
     
     
-    int N =1000000000;
-    int nombre_recherche = 939827471;
+    int N =1000000;
+    int nombre_recherche = 939827;
     struct timeval *start = malloc(sizeof(start));
     struct timeval *end = malloc(sizeof(end));
     
@@ -144,4 +144,5 @@ int main(int argc, const char * argv[]) {
     
     free(start);
     free(end);
+    free(list);
 }
