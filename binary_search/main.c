@@ -9,17 +9,17 @@
 #include <stdlib.h>
 #include <time.h>
 
-long int *createList(long int N)
+unsigned long int *createList(long int N)
 {
-    long int *liste;
-    liste = (long int*)calloc(N,sizeof(long int));
+    unsigned long int *liste;
+    liste = (unsigned long int*)calloc(N,sizeof(unsigned long int));
     if (liste == NULL)
     {
         printf("Could not allocate more memory !. Please lower the array size !\n");
         return NULL;
         
     }
-    for (long int x = 0; x <= N; x++)
+    for (unsigned long int x = 0; x <= N; x++)
     {
         liste[x] = x;
         
@@ -31,9 +31,9 @@ long int *createList(long int N)
 }
 
 
-int linearSearch(long int *list , long int nb , long int N)
+int linearSearch(unsigned long int *list , unsigned long int nb , unsigned long int N)
 {
-    long int i = 0;
+    unsigned long int i = 0;
     while (nb != list[i] && i <= N)
     {
         i++;
@@ -50,14 +50,14 @@ int linearSearch(long int *list , long int nb , long int N)
     }
 }
 
-int binarySearch(long int *list, long int nb, long int N)
+int binarySearch(unsigned long int *list, unsigned long int nb, unsigned long int N)
 {
-    long int left = 0;
-    long int right = N-1;
+    unsigned long int left = 0;
+    unsigned long int right = N-1;
     
     while (left <= right)
     {
-        long int middle = left + (right - left) /2;
+        unsigned long int middle = left + (right - left) /2;
         
         if (list[middle] == nb)
         {
@@ -84,14 +84,14 @@ int binarySearch(long int *list, long int nb, long int N)
 int main(int argc, const char * argv[]) {
     
     
-    long int N =4000000009;
-    long int nombre_recherche = 473648482;
+    unsigned long int N =1000000000;
+    unsigned long int nombre_recherche = 473648489;
     struct timespec *start = malloc(sizeof(start));
     struct timespec *end = malloc(sizeof(end));
     
     clock_gettime(CLOCK_REALTIME, start);
     
-    long int *list = createList(N);
+    unsigned long int *list = createList(N);
     if (list == NULL)
     {
         exit(EXIT_FAILURE);
