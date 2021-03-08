@@ -9,7 +9,7 @@
 #include <stdlib.h>
 #include <time.h>
 
-unsigned long int *createList(long int N)
+unsigned long int *createList(unsigned long int N)
 {
     unsigned long int *liste;
     liste = (unsigned long int*)calloc(N,sizeof(unsigned long int));
