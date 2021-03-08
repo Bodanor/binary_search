@@ -94,7 +94,7 @@ int main(int argc, const char * argv[]) {
     long int *list = createList(N);
     if (list == NULL)
     {
-        EXIT_FAILURE;
+        exit(EXIT_FAILURE);
         
     }
     
