@@ -4,6 +4,16 @@
 
 #include "bench.h"
 
+void printUsage(void)
+{
+    printf("Usage : ./bench :\n");
+    printf("\t\t--short || -s : Create a list with a size of 5000000 int\n");
+    printf("\t\t--medium || -m : Create a list with a size of 50000000 int\n");
+    printf("\t\t--long || -l : Create a list with a size of 50000000 int\n");
+    printf("\t\t--custom || -c <size> : Create a list with a custom size \n\n");
+    
+}
+
 int main(int argc, char **argv){
     const char *optstring=":smlc:";
     int benchFlag = 0;
@@ -67,7 +77,9 @@ int main(int argc, char **argv){
                 break;
             case '?':
                 printf("unknown option: %s\n", argv[optind-1]);
-                return -2;
+                printUsage();
+                exit(EXIT_FAILURE);
+                
                 
                 
         }
@@ -79,7 +91,7 @@ int main(int argc, char **argv){
     if (index < argc)
     {
         printf("Non-option argument \'%s\'\n", argv[index]);
-        exit(EXIT_FAILURE);
+        
         
     }
     
@@ -94,7 +106,7 @@ int main(int argc, char **argv){
     }
     
     else {
-        printf("Bad argument !\n");
+        printUsage();
         
     }
     
