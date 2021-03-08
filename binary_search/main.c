@@ -13,6 +13,12 @@ long int *createList(long int N)
 {
     long int *liste;
     liste = (long int*)calloc(N,sizeof(long int));
+    if (liste == NULL)
+    {
+        printf("Could not allocate more memory !. Please lower the array size !\n");
+        return NULL;
+        
+    }
     for (long int x = 0; x <= N; x++)
     {
         liste[x] = x;
@@ -86,6 +92,11 @@ int main(int argc, const char * argv[]) {
     clock_gettime(CLOCK_REALTIME, start);
     
     long int *list = createList(N);
+    if (list == NULL)
+    {
+        EXIT_FAILURE;
+        
+    }
     
     clock_gettime(CLOCK_REALTIME, end);
     double time_taken = (end->tv_sec - start->tv_sec) + (end->tv_nsec - start->tv_nsec)/1E9;
