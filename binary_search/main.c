@@ -84,8 +84,15 @@ int binarySearch(unsigned long int *list, unsigned long int nb, unsigned long in
 int main(int argc, const char * argv[]) {
     
     
-    unsigned long int N =1000000000;
-    unsigned long int nombre_recherche = 473648489;
+    unsigned long int N =500000000;
+    unsigned long int nombre_recherche = 499999999;
+    
+    if (N < nombre_recherche)
+    {
+        printf("Le nombre rechercher est plus grand que la taille du tableau de nombres !\n");
+        exit(EXIT_FAILURE);
+        
+    }
     struct timespec *start = malloc(sizeof(start));
     struct timespec *end = malloc(sizeof(end));
     
